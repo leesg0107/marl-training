@@ -1,0 +1,29 @@
+Failure # 1 (occurred at 2025-01-28_18-40-48)
+The actor died because of an error raised in its creation task, [36mray::PPO.__init__()[39m (pid=55846, ip=127.0.0.1, actor_id=9db4f4c2f478188da10a621d01000000, repr=PPO)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/worker_set.py", line 227, in _setup
+    self.add_workers(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/worker_set.py", line 593, in add_workers
+    raise result.get()
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/utils/actor_manager.py", line 481, in __fetch_result
+    result = ray.get(r)
+ray.exceptions.RayActorError: The actor died because of an error raised in its creation task, [36mray::RolloutWorker.__init__()[39m (pid=55849, ip=127.0.0.1, actor_id=b9b4b80c0a35d0c7ff004d5c01000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x1278b40a0>)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/rollout_worker.py", line 397, in __init__
+    self.env = env_creator(copy.deepcopy(self.env_context))
+  File "/Users/leesg17/Github/marl-training/pistonball/training.py", line 32, in env_creator
+    env = ss.pettingzoo_env_to_vec_env_v1(env)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/supersuit/vector/vector_constructors.py", line 83, in pettingzoo_env_to_vec_env_v1
+    assert isinstance(
+AssertionError: pettingzoo_env_to_vec_env takes in a pettingzoo ParallelEnv. Can create a parallel_env with pistonball.parallel_env() or convert it from an AEC env with `from pettingzoo.utils.conversions import aec_to_parallel; aec_to_parallel(env)``
+
+During handling of the above exception, another exception occurred:
+
+[36mray::PPO.__init__()[39m (pid=55846, ip=127.0.0.1, actor_id=9db4f4c2f478188da10a621d01000000, repr=PPO)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/algorithms/algorithm.py", line 517, in __init__
+    super().__init__(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/tune/trainable/trainable.py", line 185, in __init__
+    self.setup(copy.deepcopy(self.config))
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/algorithms/algorithm.py", line 639, in setup
+    self.workers = WorkerSet(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/worker_set.py", line 179, in __init__
+    raise e.args[0].args[2]
+AssertionError: pettingzoo_env_to_vec_env takes in a pettingzoo ParallelEnv. Can create a parallel_env with pistonball.parallel_env() or convert it from an AEC env with `from pettingzoo.utils.conversions import aec_to_parallel; aec_to_parallel(env)``

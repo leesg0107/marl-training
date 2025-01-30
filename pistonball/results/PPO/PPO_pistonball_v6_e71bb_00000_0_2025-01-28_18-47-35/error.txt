@@ -1,0 +1,35 @@
+Failure # 1 (occurred at 2025-01-28_18-47-41)
+The actor died because of an error raised in its creation task, [36mray::PPO.__init__()[39m (pid=56236, ip=127.0.0.1, actor_id=c25d78429af64f6689c140db01000000, repr=PPO)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/worker_set.py", line 227, in _setup
+    self.add_workers(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/worker_set.py", line 593, in add_workers
+    raise result.get()
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/utils/actor_manager.py", line 481, in __fetch_result
+    result = ray.get(r)
+ray.exceptions.RayActorError: The actor died because of an error raised in its creation task, [36mray::RolloutWorker.__init__()[39m (pid=56245, ip=127.0.0.1, actor_id=b4f72012f1b219a34ca8326801000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x39a98e130>)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/rollout_worker.py", line 525, in __init__
+    self._update_policy_map(policy_dict=self.policy_dict)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/rollout_worker.py", line 1704, in _update_policy_map
+    updated_policy_dict = self._get_complete_policy_specs_dict(policy_dict)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/rollout_worker.py", line 1782, in _get_complete_policy_specs_dict
+    preprocessor = ModelCatalog.get_preprocessor_for_space(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/models/catalog.py", line 786, in get_preprocessor_for_space
+    prep = cls(observation_space, options)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/models/preprocessors.py", line 42, in __init__
+    self._size = int(np.product(self.shape))
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/numpy/__init__.py", line 410, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'product'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::PPO.__init__()[39m (pid=56236, ip=127.0.0.1, actor_id=c25d78429af64f6689c140db01000000, repr=PPO)
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/algorithms/algorithm.py", line 517, in __init__
+    super().__init__(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/tune/trainable/trainable.py", line 185, in __init__
+    self.setup(copy.deepcopy(self.config))
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/algorithms/algorithm.py", line 639, in setup
+    self.workers = WorkerSet(
+  File "/Users/leesg17/miniconda3/envs/pettingzoo/lib/python3.9/site-packages/ray/rllib/evaluation/worker_set.py", line 179, in __init__
+    raise e.args[0].args[2]
+AttributeError: module 'numpy' has no attribute 'product'
